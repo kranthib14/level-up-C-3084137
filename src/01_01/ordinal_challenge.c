@@ -2,8 +2,11 @@
 char *ord[] = {"st", "nd", "rd", "th"};
 char *ordinal(int v)
 {
-	int rem = v % 10;
-	return ord[((rem < 4) && rem != 0) ? rem - 1 : 3];
+	/* catch exceptions */
+	if (v == 11 || v == 12 || v == 13)
+		return ("th");
+	v %= 10;
+	return ord[((v < 4) && v != 0) ? v - 1 : 3];
 }
 
 int main()
